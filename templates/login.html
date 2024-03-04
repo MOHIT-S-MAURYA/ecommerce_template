@@ -1,0 +1,23 @@
+<!-- login.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Your E-commerce Site - Login{% endblock %}
+
+{% block content %}
+    <section class="login">
+        <h2>Login</h2>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>.</p>
+    </section>
+{% endblock %}

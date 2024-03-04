@@ -1,0 +1,45 @@
+<!-- profile.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Your E-commerce Site - Profile{% endblock %}
+
+{% block content %}
+    <section class="profile">
+        <h2>Your Profile</h2>
+        <div class="profile-info">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <!-- Add more user-related information as needed -->
+        </div>
+
+        <h3>Order History</h3>
+        {% if orders %}
+            <ul class="order-list">
+                {% for order in orders %}
+                    <li>
+                        <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+                        <p><strong>Total Amount:</strong> ${{ order.total_amount }}</p>
+                        <!-- Add more order details as needed -->
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No order history available.</p>
+        {% endif %}
+
+        <h3>Update Profile</h3>
+        {% comment %} <form action="{% url 'update_profile' %}" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ user.username }}" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}" required>
+
+            <!-- Add more profile update fields as needed -->
+
+            <button type="submit">Update Profile</button>
+        </form> {% endcomment %}
+    </section>
+{% endblock %}
