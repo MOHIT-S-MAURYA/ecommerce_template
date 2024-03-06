@@ -2,28 +2,51 @@
 
 {% extends 'base.html' %}
 
-{% block title %}Your E-commerce Site - Sign Up{% endblock %}
+{% block title %}Your Upcycle Site - Sign Up{% endblock %}
 
-{% block content %}
-    <section class="signup">
-        <h2>Sign Up</h2>
-        <form action="{% url 'signup' %}" method="post">
-            {% csrf_token %}
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="password1">Password:</label>
-            <input type="password" id="password1" name="password1" required>
-
-            <label for="password2">Confirm Password:</label>
-            <input type="password" id="password2" name="password2" required>
-
-            <button type="submit">Sign Up</button>
+{% block body %}
+   
+<div class="container w-50 my-25">
+    <main class="form-signin w-500 m-auto my-20">
+        <form 
+           method="POST" action={% url 'signup' %} id"signup-form">
+           {% csrf_token %}
+          <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="50" height="50">
+          <h1 class="h3 mb-3 fw-normal">Please sign Up</h1>
+          <!--first name-->
+          <div class="form-floating my-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="enter Your First name" name="first name"id="first-name">
+            <label for="floatingInput">First name</label>
+          </div>
+          <!--last name-->
+          <div class="form-floating my-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="enter Your last name" name="last name" id="last-name">
+            <label for="floatingInput">last name</label>
+            
+          </div>
+          <!--username-->
+          <div class="form-floating my-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Enter Your FUll Name" name="username" id="username">
+            <label for="floatingInput">User Name</label>
+            <span class"text-danger">{{form.username.errors}}</span>
+          </div>
+          <!--Email-->
+          <div class="form-floating my-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" id="email">
+            <label for="floatingInput">Email address</label>
+            <span class"text-danger">{{form.username.errors}}</span>
+          </div>
+          <!--password-->
+          <div class="form-floating my-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" id="password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <button class="btn btn-primary w-100 py-2 my-3" disabled type="submit" id="signup-button">Sign Up</button>
+          <p class="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
+          <a href={% url "login" %} >login</a>
         </form>
+      </main>
+    </div>
+    <script src="{% static 'js/signup.js' %}"> </script>
 
-        <p>Already have an account? <a href="{% url 'login' %}">Log in here</a>.</p>
-    </section>
 {% endblock %}

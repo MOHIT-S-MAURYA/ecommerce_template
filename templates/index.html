@@ -6,29 +6,165 @@
 {% block body %}
 
 {% comment %} carousel {% endcomment %}
-<div class="container-fluid  px-0 ">
-
- <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src={% static "images/carousel1.jpg" %} class="d-block w-100" alt="...">
+<div class="container-fluid px-0">
+  <div class="carousel-container">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'images/carousel1.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/carousel2.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/carousel3.jpg' %}" class="d-block w-100" alt="...">
+        </div>
       </div>
-      <div class="carousel-item">
-        <img src={% static "images/carousel2.jpg" %}class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src={% static "images/carousel3.jpg" %} class="d-block w-100" alt="...">
-      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div> 
+  </div>
+</div>
+
+
+
+
+{% comment %} hero section {% endcomment %}
+
+<div class="album py-5 bg-body-tertiary ">
+  <div class="container ">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src={% static 'images/up-1.jpg' %} class="d-block w-100" alt="..."svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <div class="card-body">
+            <p class="card-text">This is a wider card with supporting text </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-secondary" >View</a>
+                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-secondary" >cart</a>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src={% static 'images/up-2.jpg' %} class="d-block w-100" alt="..."svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <div class="card-body">
+            <p class="card-text">This is a wider card with supporting text below </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-secondary" >View</a>
+                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-secondary" >cart</a>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src={% static 'images/up-3.jpg' %} class="d-block w-100" alt="..."svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <div class="card-body">
+            <p class="card-text">This is a wider card with supporting text below.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-secondary" >View</a>
+                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-secondary" >cart</a>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src={% static 'images/up-4.jpg' %} class="d-block w-100" alt="..."svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <div class="card-body">
+            <p class="card-text">This is a wider card with supporting text below </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-secondary" >View</a>
+                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-secondary" >cart</a>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src={% static 'images/up-5.jpg' %} class="d-block w-100" alt="..."svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <div class="card-body">
+            <p class="card-text">This is a wider card with supporting text below </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-secondary" >View</a>
+                <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-secondary" >cart</a>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src={% static 'images/up-6.jpg' %} class="d-block w-100" alt="..."svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <div class="card-body">
+            <p class="card-text">This is a wider card with supporting text below </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-secondary" >View</a>
+                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-secondary" >cart</a>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src={% static 'images/up-7.jpg' %} class="d-block w-100" alt="..."svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <div class="card-body">
+            <p class="card-text">This is a wider card with supporting text below </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-secondary" >View</a>
+                <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-secondary" >cart</a>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src={% static 'images/up-8.jpg' %} class="d-block w-100" alt="..."svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <div class="card-body">
+            <p class="card-text">This is a wider card with supporting text </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-secondary" >View</a>
+                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-secondary" >cart</a>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </div>
 
 {% endblock body %}

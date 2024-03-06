@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "app",
+    
+]
+AUTHENTICATION_BACKENDS=[
+    'django.contrib.auth.backends.ModelBackend'
 ]
 
 MIDDLEWARE = [

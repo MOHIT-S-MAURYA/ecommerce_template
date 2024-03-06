@@ -11,6 +11,11 @@ urlpatterns = [
     path('product/', views.product, name='product'),
     path('profile/', views.profile, name='profile'),
     path('login/', views.login, name='login'),
-    path('signup/', views.signup, name='signup'),
+    path("logout/", views.logout, name="logout"),
+    path('signup/', views.signupuser, name='signup'),
+    path('shop/', views.shop, name='shop'),
+    path('productdetails/', views.productdetails, name='productdetails'),
+    path('buy/', views.buy, name='buy'),
+   
 
 ]
