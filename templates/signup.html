@@ -9,6 +9,8 @@
 <div class="container w-50 my-25">
     <main class="form-signin w-500 m-auto my-20">
 
+{% comment %} alert {% endcomment %}
+
       {% if messages %}
         {% for message in messages %}
 
@@ -21,7 +23,7 @@
 
 
 
-
+{% comment %} Form {% endcomment %}
         <form 
            method="POST" action={% url 'signup' %} id"signup-form">
            {% csrf_token %}

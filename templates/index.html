@@ -8,7 +8,7 @@
 {% if messages %}
 {% for message in messages %}
     {% if message.tags == 'success' %}
-    <div class="alert alert-success alert-dismissible fade show {{ message.tags }} mb-0 my-4" role="alert">
+    <div class="alert alert-success alert-dismissible fade show {{ message.tags }} mb-0" role="alert">
         {{ message }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -18,7 +18,7 @@
 {% endif %}
 
 {% comment %} carousel {% endcomment %}
-<div class="container-fluid px-0">
+<div class="carousel container-fluid px-0">
   <div class="carousel-container">
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">

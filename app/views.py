@@ -4,11 +4,10 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login
 from django.contrib.auth import authenticate,logout,login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import JsonResponse
+
 
 # Create your views here.
 
@@ -59,34 +58,32 @@ def signupuser(request):
 
 
 #-------------login user view----------------
-def loginuser(request):
+def loginUser(request):
     if request.user.is_authenticated:
-        print(User.email)
         return redirect("/")
-    else:
-        print("User is not authenticated")
-    
+
     if request.method == 'POST':
-        Username = request.POST.get('Username')
-        password = request.POST.get('password')
-        print("user is not None")
-        login(request,User)
-        print(User.email,"logged in")
-        return render(request,"index.html")
-    else:
-        print("User is None")
-        return render(request, 'login.html')
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'You have been logged in successfully!') 
+            return redirect("/")
+        else:
+            messages.error(request, 'Invalid username or password!')
+            return redirect("login")
+    return render(request, "login.html")
+
 # ------------logout user view-----------------
     
-    @login_required(login_url='/login/')
-    def logoutUser(request):
+@login_required(login_url='/login/')
+def logoutUser(request):
         logout(request)
-        print("User logged out")
+        messages.success(request, 'You have been logged out successfully!')
 
 # ---print(User.is_authenticated)
         return redirect("/")
-
-
 
 def shop(request):
     return render(request, 'shop.html')

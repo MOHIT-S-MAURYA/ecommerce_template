@@ -1,35 +1,20 @@
-/* carousel */
 
-.carousel-container {
-    max-height: 50%;
-    overflow: hidden;
-  }
-
-  #carouselExampleAutoplaying {
-    width: 100%;
+  .carousel-container {
+    height: 100vh; /* Set the height to 60% of the viewport height */
+    overflow: hidden; /* Ensure that the content doesn't overflow */
   }
 
   .carousel-inner {
-    width: 100%;
-    display: flex;
+    height: 100%; /* Set the height of the carousel inner container to 100% */
   }
 
   .carousel-item {
-    width: 100%;
+    height: 100%; /* Set the height of each carousel item to 100% */
   }
 
-  .carousel-item img {
-    width: 100%;
-    height: auto;
+  .carousel img {
+    object-fit: cover; /* Make sure the image covers the entire carousel item */
+    width: 100%; /* Make the image fill its container */
+    height: 100%; /* Make the image fill its container */
   }
 
-  .carousel-indicators {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
