@@ -11,15 +11,13 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
     {% comment %} navigation bar {% endcomment %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand" href={% url "home" %}>Ecommerce</a>
-        <button>
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -40,6 +38,7 @@
     </nav>
 
     {% block body %}{% endblock body %} 
+
     
     
     {% comment %} Footer {% endcomment %}

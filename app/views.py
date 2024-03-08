@@ -27,39 +27,31 @@ def product(request):
 def profile(request):
     return render(request, 'profile.html')
 
-#email and username validation view
-def check_username_avialability(request):
-    username = request.GET.get('username', '')
-    username_exist = User.objects.filter(username=username).exists()
-    response = {
-        'availabel': not username_exist
-    }
-    return JsonResponse(response)
-
-def check_email_availability(request):
-    email = request.GET.get ('email', '')
-    email_exists = User.objects.filter(email=email).exists()
-    response = {
-        'available': not email_exists
-    }
-    return JsonResponse(response)
 
 # -------signup user -----------
 
 def signupuser(request):
     if request.method == 'POST':
-        firstname = request.POST.get("first name")
-        lastname = request.POST.get("last name")
+        firstname = request.POST.get("first_name")
+        lastname = request.POST.get("last_name")
         username = request.POST.get("username")
         email = request.POST.get("email")
         password = request.POST.get("password") 
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username already exists!')
+            return redirect("signup")
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Email already exists!')
+            return redirect("signup")
+        
         user = User.objects.create_user(
-            firstname=firstname,
-            lastname=lastname, 
             username=username,
             email=email,
-            password=password,
+            password=password
         )
+        user.first_name = firstname
+        user.last_name = lastname
         user.save()
         messages.success(request, 'Your account has been create successfully!')
         return redirect("/")
