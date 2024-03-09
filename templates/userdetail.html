@@ -1,0 +1,43 @@
+<!-- profile.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Your E-commerce Site - Profile{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <img src="{% static 'images/user-avatar.jpg' %}" class="img-fluid rounded-circle mb-3" alt="User Avatar">
+          <h4 class="card-title">John Doe</h4>
+          <p class="card-text">john.doe@example.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Order History</h4>
+
+          <!-- Sample order details, replace with actual data from the backend -->
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Order #12345
+              <span class="badge bg-primary rounded-pill">Delivered</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Order #67890
+              <span class="badge bg-warning rounded-pill">Processing</span>
+            </li>
+            <!-- Add more order details here -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

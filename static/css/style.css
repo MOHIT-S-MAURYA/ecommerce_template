@@ -18,3 +18,32 @@
     height: 100%; /* Make the image fill its container */
   }
 
+  /* Custom CSS for product details with login form style */
+  .product-container {
+    margin-top: 50px;
+    background-color: black; /* Match the background color of the login form */
+    color: #FFD700; /* Text color */
+    border: 1px solid #FFD700; /* Border color */
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .product-details {
+    margin-top: 20px;
+  }
+
+  .product-price {
+    margin-top: 10px;
+    color: #FFD700; /* Info color */
+  }
+
+  .btn-outline-secondary {
+    color: black; /* Button text color */
+    border-color: black; /* Button border color */
+  }

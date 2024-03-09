@@ -7,25 +7,31 @@
 
 {% block body %}
 
-<div class="container mt-5 bg-success p-2 text-dark bg-opacity-25 w-50 mh-100">
-    <div class="row ">
+<div class="container product-container bg-dark w-50 my-5">
+    <div class="row">
         <div class="col-md-6">
-            <img src="product-image.jpg" alt="Product Image" class="img-fluid">
+            <img src="product-image.jpg" alt="Product Image" class="img-fluid product-image">
         </div>
-        <div class="col-md-6">
-            <h2>Product Name</h2>
-            <p class="text-muted">Category: Electronics</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel ante et est convallis varius. Integer non ex id metus accumsan eleifend.</p>
-            <h3 class="text-info">$99.99</h3>
-            <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-secondary text-success-emphasis" >Add to cart</a>
-            <a href={% url "buy" %} type="button" class="btn btn-sm btn-outline-secondary" >Buy</a>
+        <div class="col-md-6 product-details">
+            <h2 class="text-warning">Product Name</h2>
+            <p class="text-white">Category: Electronics</p>
+            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel ante et est convallis varius. 
+                Integer non ex id metus accumsan eleifend.
+                bjcfieihifywefykhkmguoiruqptk hfirytfjjwd hwih heiywti
+                bsfjrihkf hghwoighb jgoiyqw jqeotklf ;wuyk </p>
+            <h3 class="product-price">$99.99</h3>
+            
+            <a href="{% url 'buy' %}" type="button" class="btn btn-sm btn-outline-secondary">Go To Buy</a>
         </div>
     </div>
 
     <div class="row mt-4">
         <div class="col-md-12">
-            <h4>Product Description</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel ante et est convallis varius. Integer non ex id metus accumsan eleifend.</p>
+            <h4 class="text-warning">Product Description</h4>
+            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                bcehrisry gruytfh ioptp3jr k225fytpqe jyoik lrutwefnw
+                eytkflw hfiejdtrk jtyLRBFP GUEFGL JEFhr fkgng ha;lf
+                Nullam vel ante et est convallis varius. Integer non ex id metus accumsan eleifend.</p>
         </div>
     </div>
 </div>
