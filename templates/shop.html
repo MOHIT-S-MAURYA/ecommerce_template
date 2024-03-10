@@ -2,259 +2,53 @@
 
 {% extends 'base.html' %}
 
-{% block title %}Your E-commerce Site - {{ product.title }}{% endblock %}
+{% block title %}Your E-commerce Site - Shop{% endblock %}
 
 {% block body %}
 
 <div class="album py-5 bg-body-tertiary">
-    <div class="container ">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">first product.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+            {% for product in products %}
+                <div class="col">
+                    <div class="card shadow-sm bg-dark text-light">
+                        <img src="{{ product.image.url }}" class="d-block w-100" alt="{{ product.name }}">
+                        <div class="card-body">
+                            <p class="card-text">{{ product.name }}</p>
+                            <p class="card-text">{{ product.description }}</p>
+                            <p class="card-text">Price: ${{ product.price }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{% url 'productdetails' product.pk %}" type="button" class="btn btn-sm btn-outline-warning text-light">View</a>
+                                    <a href="{% url 'cart' %}" type="button" class="btn btn-sm btn-outline-warning text-light">Cart</a>
+                                </div>
+                                <small class="text-body-secondary">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">2 product.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 3</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
+            {% endfor %}
         </div>
 
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 4</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 5</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 6</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% comment %} paginator {% endcomment %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if products.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ products.previous_page_number }}">previous</a>
+                {% endif %}
 
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 7</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
+                <span class="current">
+                    Page {{ products.number }} of {{ products.paginator.num_pages }}.
+                </span>
+
+                {% if products.has_next %}
+                    <a href="?page={{ products.next_page_number }}">next</a>
+                    <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
         </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 8</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 9</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 10</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 11</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 12</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 13</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 14</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 15</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm bg-dark text-light">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">img</text></svg>
-            <div class="card-body">
-              <p class="card-text">product 16</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href={% url "productdetails" %} type="button" class="btn btn-sm btn-outline-warning text-light" >View</a>
-                  <a href={% url "cart" %} type="button" class="btn btn-sm btn-outline-warning text-light" >cart</a>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-  
-  
-{% endblock body%}
+</div>
+
+{% endblock body %}

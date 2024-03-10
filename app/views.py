@@ -7,12 +7,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout,login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .models import Product, CarouselImage
 
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    products = Product.objects.all()
+    carousel_images = CarouselImage.objects.all()
+    return render(request, 'index.html', {'products': products, 'carousel_images': carousel_images})
 
 def contact(request):
     return render(request, 'contact.html')
@@ -90,11 +93,15 @@ def logoutUser(request):
 # ---print(User.is_authenticated)
         return redirect("/")
 
-def shop(request):
-    return render(request, 'shop.html')
 
-def productdetails(request):
-    return render(request, 'productdetails.html')
+# ------------shop view-----------------
+def shop(request):
+    products = Product.objects.all()
+    return render(request, 'shop.html', {'products': products})
+
+def productdetails(request,pk):
+    product = Product.objects.get(id=pk)
+    return render(request, 'productdetails.html', {'product': product})
 
 def buy(request):
     return render(request, 'buy.html')

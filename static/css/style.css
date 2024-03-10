@@ -1,53 +1,73 @@
+/* common.css */
 
-  .carousel-container {
-    height: 100vh; /* Set the height to 60% of the viewport height */
-    overflow: hidden; /* Ensure that the content doesn't overflow */
-  }
+/* Global styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
-  .carousel-inner {
-    height: 100%; /* Set the height of the carousel inner container to 100% */
-  }
+.container-fluid {
+  padding: 0;
+  margin: 0;
+}
 
-  .carousel-item {
-    height: 100%; /* Set the height of each carousel item to 100% */
-  }
+/* Navbar styles */
+.navbar-nav .nav-link {
+  padding-bottom: 0.5rem;
+  position: relative;
+  transition: color 0.3s;
+}
 
-  .carousel img {
-    object-fit: cover; /* Make sure the image covers the entire carousel item */
-    width: 100%; /* Make the image fill its container */
-    height: 100%; /* Make the image fill its container */
-  }
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
+  color: #ffc107;
+}
 
-  /* Custom CSS for product details with login form style */
-  .product-container {
-    margin-top: 50px;
-    background-color: black; /* Match the background color of the login form */
-    color: #FFD700; /* Text color */
-    border: 1px solid #FFD700; /* Border color */
-    border-radius: 10px;
-    padding: 20px;
-  }
+.navbar-nav .active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #ffc107;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 
-  .product-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-  }
+/* Footer styles */
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  .product-details {
-    margin-top: 20px;
-  }
+footer {
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
 
-  .product-price {
-    margin-top: 10px;
-    color: #FFD700; /* Info color */
-  }
+/* Remove redundant styles */
 
-  .btn-outline-secondary {
-    color: black; /* Button text color */
-    border-color: black; /* Button border color */
-  }
-  /* static/css/products.css */
+/* carousel.css */
+
+.carousel-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.carousel-inner, .carousel-item {
+  height: 100%;
+}
+
+.carousel img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* product.css */
 
 .product-container {
   background-color: #f8f9fa;
@@ -55,7 +75,7 @@
   border-radius: 8px;
 }
 
-.product-image {
+.product-image, .product-title {
   border-radius: 8px;
 }
 
@@ -68,16 +88,12 @@
   color: #6c757d;
 }
 
-.product-short-description {
+.product-short-description, .product-description-title {
   color: #343a40;
 }
 
 .product-price {
   color: #007bff;
-}
-
-.product-description-title {
-  color: #343a40;
 }
 
 .product-long-description {

@@ -1,40 +1,35 @@
-<!--products.html-->
-
-
 {% extends 'base.html' %}
 
-{% block title %}Your E-commerce Site - {{ product.title }}{% endblock %}
+{% block title %}Your E-commerce Site - {{ product.name }}{% endblock %}
 
 {% block body %}
 
-<div class="container product-container bg-dark w-120 my-8">
+<div class="container-fluid bg-dark">
     <div class="row">
-        <div class="col-md-6">
-            <img src="product-image.jpg" alt="Product Image" class="img-fluid product-image-outline-warning">
+        <!-- Left column with full-width image -->
+        <div class="col-md-6 p-0">
+            <img src="{{ product.image.url }}" alt="{{ product.name }} Image" class="img-fluid">
         </div>
-        <div class="col-md-6 product-details">
-            <h2 class="text-warning">Product Name</h2>
-            <p class="text-white">Category: Electronics</p>
-            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel ante et est convallis varius. 
-                Integer non ex id metus accumsan eleifend.
-                bjcfieihifywefykhkmguoiruqptk hfirytfjjwd hwih heiywti
-                bsfjrihkf hghwoighb jgoiyqw jqeotklf ;wuyk </p>
-            <h3 class="product-price">$99.99</h3>
-            
-            <a href="{% url 'profile' %}" type="button" class="btn btn-sm btn-outline-warning">Go To Buy</a>
+        <!-- Right column with product details -->
+        <div class="col-md-6 bg-dark text-white">
+            <div class="p-4">
+                <h2 class="text-warning">{{ product.name }}</h2>
+                <p class="text-white">Category: {{ product.category }}</p>
+                <p class="text-white">{{ product.description }}</p>
+                <h3 class="product-price">${{ product.price }}</h3>
+                
+                <a href="{% url 'profile' %}" type="button" class="btn btn-sm btn-outline-warning">Go To Buy</a>
+            </div>
         </div>
     </div>
 
     <div class="row mt-4">
-        <div class="col-md-12">
+        <!-- Additional content or description column -->
+        <div class="col-md-12 bg-dark text-white p-4">
             <h4 class="text-warning">Product Description</h4>
-            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                bcehrisry gruytfh ioptp3jr k225fytpqe jyoik lrutwefnw
-                eytkflw hfiejdtrk jtyLRBFP GUEFGL JEFhr fkgng ha;lf
-                Nullam vel ante et est convallis varius. Integer non ex id metus accumsan eleifend.</p>
+            <p class="text-white">{{ product.description }}</p>
         </div>
     </div>
 </div>
-
 
 {% endblock %}
