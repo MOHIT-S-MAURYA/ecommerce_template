@@ -47,3 +47,39 @@
     color: black; /* Button text color */
     border-color: black; /* Button border color */
   }
+  /* static/css/products.css */
+
+.product-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.product-image {
+  border-radius: 8px;
+}
+
+.product-title {
+  color: #343a40;
+}
+
+.product-category {
+  font-style: italic;
+  color: #6c757d;
+}
+
+.product-short-description {
+  color: #343a40;
+}
+
+.product-price {
+  color: #007bff;
+}
+
+.product-description-title {
+  color: #343a40;
+}
+
+.product-long-description {
+  color: #6c757d;
+}

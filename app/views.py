@@ -26,6 +26,11 @@ def product(request):
 def profile(request):
     return render(request, 'profile.html')
 
+def productdetails(request):
+    return render(request, 'productdetails.html')
+
+
+
 
 # -------signup user -----------
 
