@@ -1,6 +1,6 @@
 # admin.py
 from django.contrib import admin
-from .models import Product, CarouselImage
+from .models import Product, CarouselImage , Cart
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -8,4 +8,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(CarouselImage)
 class CarouselImageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'image') 
+    list_display = ('title', 'image')
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ('user', 'product', 'quantity', 'total_price')

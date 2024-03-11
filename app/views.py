@@ -1,42 +1,41 @@
-# from django.shortcuts import render, HttpResponse, redirect
-# from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth import login as auth_login, logout as auth_logout
-
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout,login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Product, CarouselImage
+from .models import Cart, Product, CarouselImage
 
 
 # Create your views here.
 
+# ------------index view-----------------
 def index(request):
     products = Product.objects.all()
     carousel_images = CarouselImage.objects.all()
     return render(request, 'index.html', {'products': products, 'carousel_images': carousel_images})
 
+# ------------contact view-----------------
 def contact(request):
     return render(request, 'contact.html')
 
+# ------------cart view-----------------
+@login_required(login_url='/login/')
 def cart(request):
-    return render(request, 'cart.html')
+    user = request.user
+    cart_items = Cart.objects.filter(user=user)
+    cart_total = sum(item.total_price for item in cart_items)
+    return render(request, 'cart.html', {'cart_items': cart_items, 'cart_total': cart_total})
 
+# ------------product view-----------------
 def product(request):
     return render(request, 'product.html')
 
+# ------------profile view-----------------
 def profile(request):
     return render(request, 'profile.html')
 
-def productdetails(request):
-    return render(request, 'productdetails.html')
-
-
-
-
 # -------signup user -----------
-
 def signupuser(request):
     if request.method == 'POST':
         firstname = request.POST.get("first_name")
@@ -84,7 +83,6 @@ def loginUser(request):
     return render(request, "login.html")
 
 # ------------logout user view-----------------
-    
 @login_required(login_url='/login/')
 def logoutUser(request):
         logout(request)
@@ -99,9 +97,37 @@ def shop(request):
     products = Product.objects.all()
     return render(request, 'shop.html', {'products': products})
 
+# ------------productdetails view-----------------
 def productdetails(request,pk):
     product = Product.objects.get(id=pk)
     return render(request, 'productdetails.html', {'product': product})
 
+# ------------buy view-----------------
 def buy(request):
     return render(request, 'buy.html')
+
+# ------------add to cart view-----------------
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    if request.user.is_authenticated:
+        # User is authenticated, proceed with adding to cart
+        cart_item, created = Cart.objects.get_or_create(user=request.user, product=product)
+        # Your additional logic here
+        messages.success(request, f'{product.name} added to your cart.')
+    else:
+        # User is not authenticated, redirect to login page
+        messages.info(request, 'Please log in to add items to your cart.')
+        return redirect('login')
+
+    return redirect('cart')
+
+# ------------remove from cart view-----------------
+def remove_from_cart(request, cart_id):
+    cart_item = get_object_or_404(Cart, id=cart_id)
+
+    # Delete the item from the cart
+    cart_item.delete()
+
+    messages.success(request, f'{cart_item.product.name} removed from your cart.')
+    return redirect('cart')  # Change 'cart' to your actual cart URL
