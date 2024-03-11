@@ -1,6 +1,8 @@
 # models.py
 from django.db import models
 from django.contrib.auth.models import User
+from decimal import Decimal
+
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -27,7 +29,7 @@ class Cart(models.Model):
 
     def save(self, *args, **kwargs):
         # Calculate the total price before saving
-        self.total_price = self.quantity * self.product.price
+        self.total_price = Decimal(self.quantity) * self.product.price
         super().save(*args, **kwargs)
 
     def __str__(self):

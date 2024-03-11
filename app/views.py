@@ -111,9 +111,17 @@ def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
     if request.user.is_authenticated:
-        # User is authenticated, proceed with adding to cart
-        cart_item, created = Cart.objects.get_or_create(user=request.user, product=product)
-        # Your additional logic here
+        # Check if the product is already in the user's cart
+        cart_item = Cart.objects.filter(user=request.user, product=product).first()
+
+        if cart_item:
+            # If the product is already in the cart, increase the quantity
+            cart_item.quantity += 1
+            cart_item.save()
+        else:
+            # If the product is not in the cart, create a new cart item
+            Cart.objects.create(user=request.user, product=product)
+
         messages.success(request, f'{product.name} added to your cart.')
     else:
         # User is not authenticated, redirect to login page
@@ -123,11 +131,15 @@ def add_to_cart(request, product_id):
     return redirect('cart')
 
 # ------------remove from cart view-----------------
+
 def remove_from_cart(request, cart_id):
     cart_item = get_object_or_404(Cart, id=cart_id)
 
-    # Delete the item from the cart
-    cart_item.delete()
-
-    messages.success(request, f'{cart_item.product.name} removed from your cart.')
-    return redirect('cart')  # Change 'cart' to your actual cart URL
+    if request.method == 'POST':
+        # Delete the item from the cart if the request is POST
+        cart_item.delete()
+        messages.success(request, f'{cart_item.product.name} removed from your cart.')
+        return redirect('cart')
+    else:
+        # Handle GET requests by redirecting back to the cart page
+        return redirect('cart')
