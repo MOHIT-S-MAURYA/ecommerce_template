@@ -135,11 +135,11 @@ def add_to_cart(request, product_id):
 def remove_from_cart(request, cart_id):
     cart_item = get_object_or_404(Cart, id=cart_id)
 
-    if request.method == 'POST':
-        # Delete the item from the cart if the request is POST
-        cart_item.delete()
-        messages.success(request, f'{cart_item.product.name} removed from your cart.')
-        return redirect('cart')
+    # check if the item is more than one
+    if cart_item.quantity > 1:
+        cart_item.quantity -= 1
+        cart_item.save()
     else:
-        # Handle GET requests by redirecting back to the cart page
-        return redirect('cart')
+        cart_item.delete()
+    messages.success(request, f'{cart_item.product.name} removed from your cart.')
+    return redirect('cart')

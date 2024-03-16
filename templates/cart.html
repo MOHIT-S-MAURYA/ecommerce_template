@@ -26,10 +26,9 @@
         <td>${{ item.product.price }}</td>
         <td>${{ item.total_price }}</td>
         <td>
-            <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
-                {% csrf_token %}
+            <a href="{% url 'remove_from_cart' item.id %}">
                 <button type="submit" class="btn btn-danger btn-sm">Remove</button>
-            </form>
+            </a>
         </td>
     </tr>
 {% endfor %}
