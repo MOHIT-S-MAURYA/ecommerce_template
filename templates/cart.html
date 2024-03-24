@@ -23,8 +23,8 @@
         <th scope="row">{{ forloop.counter }}</th>
         <td>{{ item.product.name }}</td>
         <td>{{ item.quantity }}</td>
-        <td>${{ item.product.price }}</td>
-        <td>${{ item.total_price }}</td>
+        <td>₹ {{ item.product.price }}</td>
+        <td>₹ {{ item.total_price }}</td>
         <td>
             <a href="{% url 'remove_from_cart' item.id %}">
                 <button type="submit" class="btn btn-danger btn-sm">Remove</button>
@@ -41,7 +41,7 @@
         </table>
 
         <div class="text-end">
-            {% comment %} <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a> {% endcomment %}
+            <a href="{% url 'buy' %}" class="btn btn-primary">Proceed to Checkout</a>
         </div>
     {% else %}
         <p>Your cart is empty.</p>

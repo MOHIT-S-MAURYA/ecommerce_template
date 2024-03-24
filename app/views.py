@@ -1,41 +1,39 @@
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout,login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Cart, Product, CarouselImage
+from .models import Cart, Order, Product, CarouselImage
 
 
 # Create your views here.
 
-# ------------index view-----------------
+# index view
 def index(request):
     products = Product.objects.all()
     carousel_images = CarouselImage.objects.all()
     return render(request, 'index.html', {'products': products, 'carousel_images': carousel_images})
 
-# ------------contact view-----------------
+# contact view
 def contact(request):
     return render(request, 'contact.html')
 
-# ------------cart view-----------------
-@login_required(login_url='/login/')
-def cart(request):
-    user = request.user
-    cart_items = Cart.objects.filter(user=user)
-    cart_total = sum(item.total_price for item in cart_items)
-    return render(request, 'cart.html', {'cart_items': cart_items, 'cart_total': cart_total})
-
-# ------------product view-----------------
+# product view
 def product(request):
     return render(request, 'product.html')
 
-# ------------profile view-----------------
+# profile view
+@login_required
 def profile(request):
-    return render(request, 'profile.html')
+    user = request.user
+    return render(request, 'profile.html',{'user':user})
 
-# -------signup user -----------
+
+
+
+# Authentication handling
+
+# signup user 
 def signupuser(request):
     if request.method == 'POST':
         firstname = request.POST.get("first_name")
@@ -63,8 +61,7 @@ def signupuser(request):
         return redirect("/")
     return render(request, "signup.html")
 
-
-#-------------login user view----------------
+# login user view
 def loginUser(request):
     if request.user.is_authenticated:
         return redirect("/")
@@ -82,31 +79,88 @@ def loginUser(request):
             return redirect("login")
     return render(request, "login.html")
 
-# ------------logout user view-----------------
+# logout user view
 @login_required(login_url='/login/')
 def logoutUser(request):
         logout(request)
         messages.success(request, 'You have been logged out successfully!')
 
-# ---print(User.is_authenticated)
         return redirect("/")
 
 
-# ------------shop view-----------------
+
+
+
+
+# shop view
 def shop(request):
     products = Product.objects.all()
     return render(request, 'shop.html', {'products': products})
 
-# ------------productdetails view-----------------
+# productdetails view
 def productdetails(request,pk):
     product = Product.objects.get(id=pk)
     return render(request, 'productdetails.html', {'product': product})
 
-# ------------buy view-----------------
-def buy(request):
-    return render(request, 'buy.html')
+# # buy view
+@login_required
+def buy(request, product_id=None):
+    if request.method == 'POST':
+        messages.info(request,"reached post method")
+        full_name = request.POST.get('fullName')
+        phone_number = request.POST.get('phone')
+        address = request.POST.get('address')
 
-# ------------add to cart view-----------------
+        if product_id: 
+             # If a single product ID is provided
+            product = get_object_or_404(Product, id=product_id)
+            # Create the order object for a single product
+            order = Order.objects.create(
+                user=request.user,
+                product=product,  # Associate the product with the order
+                full_name=full_name,
+                phone_number=phone_number,
+                shipping_address=address
+            )
+            messages.success(request, 'Order placed successfully!')
+        else:  # If no single product ID is provided (i.e., multiple products from the cart)
+            cart_items = Cart.objects.filter(user=request.user)
+            if not cart_items:
+                messages.info(request, 'Your cart is empty. Please add items to your cart first.')
+                return redirect('shop')  # Redirect to the shop section if the cart is empty
+
+            for cart_item in cart_items:
+                # Create an order object for each product in the cart
+                order = Order.objects.create(
+                    user=request.user,
+                    product=cart_item.product,  # Associate the product with the order
+                    full_name=full_name,
+                    quantity = cart_item.quantity,
+                    phone_number=phone_number,
+                    shipping_address=address
+                )
+                cart_item.delete()
+            messages.success(request, 'Orders placed successfully!')
+
+        return redirect('profile')  # Redirect to the user's profile page after placing the order
+    else:
+        # If it's a GET request, render the buy.html template
+        if product_id:  # If a single product ID is provided
+            product = get_object_or_404(Product, id=product_id)
+            return render(request, 'buy.html', {'product': product})
+        else:  # If no single product ID is provided (i.e., multiple products from the cart)
+            return render(request, 'buy.html')
+
+
+# cart view
+@login_required(login_url='/login/')
+def cart(request):
+    user = request.user
+    cart_items = Cart.objects.filter(user=user)
+    cart_total = sum(item.total_price for item in cart_items)
+    return render(request, 'cart.html', {'cart_items': cart_items, 'cart_total': cart_total})
+
+# add to cart view
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
@@ -130,8 +184,7 @@ def add_to_cart(request, product_id):
 
     return redirect('cart')
 
-# ------------remove from cart view-----------------
-
+# remove from cart view
 def remove_from_cart(request, cart_id):
     cart_item = get_object_or_404(Cart, id=cart_id)
 

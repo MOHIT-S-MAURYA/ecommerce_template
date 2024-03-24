@@ -1,6 +1,6 @@
 # admin.py
 from django.contrib import admin
-from .models import Product, CarouselImage , Cart
+from .models import Product, CarouselImage , Cart, Profile, Order
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -13,3 +13,12 @@ class CarouselImageAdmin(admin.ModelAdmin):
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
     list_display = ('user', 'product', 'quantity', 'total_price')
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user' , "address" , "phone_number")
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ("user","full_name","phone_number", "product","quantity","date","total","shipping_address")
+

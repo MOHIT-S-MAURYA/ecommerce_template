@@ -34,3 +34,31 @@ class Cart(models.Model):
 
     def __str__(self):
         return f'{self.quantity} x {self.product.name} for {self.user.username}'
+    
+
+# user details 
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    address = models.CharField(max_length=100, blank=True)
+    phone_number = models.CharField(max_length=20, blank=True)
+
+# Order details
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=50, blank=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    phone_number = models.TextField(max_length=10 , blank=True)
+    quantity = models.PositiveIntegerField(default=1)
+    date = models.DateField(auto_now_add=True) 
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    shipping_address = models.CharField(max_length=200)
+
+    def save(self, *args, **kwargs):
+        # Calculate total price based on the product price and quantity
+        self.total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Order #{self.pk} by {self.user.username} for {self.product.name} on {self.date}"
