@@ -48,18 +48,30 @@
                 <div class="card-body">
                     <h2 class="card-title">Order History</h2>
                     <ul class="list-group list-group-flush">
-                        {% for order in user.orders.all %}
+                        {% for order in orders %}
                             <li class="list-group-item border-top-0 border-end-0 border-bottom border-start-0">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <h5 class="card-title">Order ID: {{ order.id }}</h5>
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <div class="flex-fill mb-4 mr-4" style="max-width: 300px;">
+                                        <h5 class="card-title mb-2">Product Name:</h5>
+                                        <p class="card-text">{{ order.product }}</p>
                                         <p class="card-text">Date: {{ order.date }}</p>
                                     </div>
-                                    <div>
-                                        <h5 class="card-title">Total Amount:</h5>
-                                        <p class="card-text">$ {{ order.total_amount }}</p>
+                                    <div class="flex-fill mb-4 mr-4" style="max-width: 300px;">
+                                        <h5 class="card-title mb-2">Quantity:</h5>
+                                        <p class="card-text">{{ order.quantity }}</p>
+                                        <h5 class="card-title mt-3 mb-2">Address:</h5>
+                                        <p class="card-text">{{ order.shipping_address }}</p>
+                                    </div>
+                                    <div class="flex-fill mb-4 mr-4" style="max-width: 300px;">
+                                        <h5 class="card-title mb-2">Status:</h5>
+                                        <p class="card-text">{{ order.status }}</p>
+                                    </div>
+                                    <div class="flex-fill mb-4" style="max-width: 300px;">
+                                        <h5 class="card-title mb-2">Total Amount:</h5>
+                                        <p class="card-text">₹ {{ order.total }}</p>
                                     </div>
                                 </div>
+                                
                             </li>
                         {% empty %}
                             <p>No orders found.</p>

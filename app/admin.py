@@ -20,5 +20,16 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("user","full_name","phone_number", "product","quantity","date","total","shipping_address")
+    list_display = ("user","full_name","phone_number", "product","quantity","date","total","shipping_address","status")
+
+    # custom actions 
+
+    def delivered(self, request, queryset):
+        queryset.update(status = Order.DELIVERED )
+
+    def notDelivered(self, request, queryset):
+        queryset.update(status = Order.NOT_DELIVERED )
+
+    actions=[delivered,notDelivered,]
+
 

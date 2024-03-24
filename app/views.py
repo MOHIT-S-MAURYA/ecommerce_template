@@ -23,10 +23,11 @@ def product(request):
     return render(request, 'product.html')
 
 # profile view
-@login_required
+@login_required(login_url='/login/')
 def profile(request):
     user = request.user
-    return render(request, 'profile.html',{'user':user})
+    orders = Order.objects.filter(user=user)
+    return render(request, 'profile.html',{'user':user , "orders":orders})
 
 
 
@@ -103,7 +104,7 @@ def productdetails(request,pk):
     return render(request, 'productdetails.html', {'product': product})
 
 # # buy view
-@login_required
+@login_required(login_url='/login/')
 def buy(request, product_id=None):
     if request.method == 'POST':
         messages.info(request,"reached post method")

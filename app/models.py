@@ -46,6 +46,15 @@ class Profile(models.Model):
 # Order details
 
 class Order(models.Model):
+    DELIVERED = 'Delivered'
+    NOT_DELIVERED = 'Not Delivered'
+    
+    STATUS_CHOICES = [
+        (DELIVERED, 'Delivered'),
+        (NOT_DELIVERED, 'Not Delivered'),
+    ]
+
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=50, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -54,6 +63,11 @@ class Order(models.Model):
     date = models.DateField(auto_now_add=True) 
     total = models.DecimalField(max_digits=10, decimal_places=2)
     shipping_address = models.CharField(max_length=200)
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=NOT_DELIVERED,
+    )
 
     def save(self, *args, **kwargs):
         # Calculate total price based on the product price and quantity
